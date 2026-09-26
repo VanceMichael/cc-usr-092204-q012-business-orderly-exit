@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "程序时间线事件",
+  "description": "经营主体有序退出程序中，组成案件时间线的单个事件信封。",
+  "type": "object",
+  "required": ["id", "type", "occurredAt"],
+  "properties": {
+    "id": { "type": "string", "description": "事件唯一标识" },
+    "type": {
+      "type": "string",
+      "enum": [
+        "application",
+        "application_accepted",
+        "announcement_published",
+        "announcement_closed",
+        "correction_requested",
+        "correction_completed",
+        "judicial_restriction",
+        "judicial_restriction_lifted",
+        "claim_filed",
+        "claim_withdrawn",
+        "objection_filed",
+        "objection_resolved",
+        "department_receipt",
+        "annual_report",
+        "business_sign",
+        "contact_attempt",
+        "tax_social_status",
+        "sensitive_report",
+        "liquidation_evidence",
+        "notice_issued",
+        "path_transfer",
+        "dormancy_started",
+        "resumption_requested",
+        "decision"
+      ]
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date",
+      "description": "事实发生日期（ISO 8601）"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date",
+      "description": "登记日期；部门回执可迟到，recordedAt 可晚于 occurredAt"
+    },
+    "payload": { "type": "object", "description": "事件负载，结构随 type 而定" }
+  },
+  "additionalProperties": false
+}
